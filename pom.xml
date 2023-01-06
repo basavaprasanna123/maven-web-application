@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://52.90.52.82:8081/repository/akhil-release/</url>
+	      <url>http://18.208.206.15:8081/repository/akhil-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://52.90.52.82:8081/repository/akhil-snapshot/</url>
+	      <url>http://18.208.206.15:8081/repository/akhil-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
