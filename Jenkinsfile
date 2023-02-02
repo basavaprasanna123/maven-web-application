@@ -68,8 +68,5 @@ post{
           replyTo: 'devopstrainingblr@gmail.com'
  */	 
  }
- 
-}
-
 }
 }
