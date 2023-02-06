@@ -11,10 +11,11 @@ triggers{
 pollSCM('* * * * *')
 }
 
-options{
+/*options{
 timestamps()
 buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5'))
 }
+*/
 
 stages{
 
