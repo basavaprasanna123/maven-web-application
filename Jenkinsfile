@@ -67,7 +67,14 @@ post{
           subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
           body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
           replyTo: 'devopstrainingblr@gmail.com'
- */	 
+ */
+stage('DeploytoContainer'){
+            steps{
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.49.183:/opt/maven-9/webapps/"
+                }    
+            }
+        }	
  }
 }
 
