@@ -79,7 +79,7 @@ stage('file check'){
                       if [ -f "$FILE" ];
                     then
                       echo "$FILE is exist"
-                      	 "ls -la /opt/maven-9/webapps/maven-web-application.war"
+                      	 "rm -rf cd /opt/maven-9/webapps/maven-web-application.war"
                     else
                        echo "$FILE is not exist"
                      fi  
@@ -88,14 +88,14 @@ stage('file check'){
                  }        
             }
         }	
-stage('DeploytoContainer'){
+/*stage('DeploytoContainer'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
                     sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.49.183:/opt/maven-9/webapps/"
                 }    
             }
         }
-
+*/
  }
 }
 
