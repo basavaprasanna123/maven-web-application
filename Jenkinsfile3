@@ -33,7 +33,7 @@ pipeline {
                             cd \${source}
                             cp -R maven-web-application \${target}\${foldername}/bkp
                             cp -R maven-web-application.war \${target}\${foldername}/bkp
-                            rm -rf maven-web-application.war
+                            rm -rf cd /opt/maven-9/webapps/maven-web-application.war
                         "
                         ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
                         ssh ec2-user@172.31.49.183 "
