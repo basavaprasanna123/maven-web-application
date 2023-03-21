@@ -28,7 +28,7 @@ stages{
                 {
                     try
                     {	    
-    			git branch: 'master', credentialsId: '957b543e-6f77-4cef-9aec-82e9b0230975', url: 'https://github.com/vikashmuktha/maveen-web-application-jayadeep.git'
+    			git branch: 'master', credentialsId: '957b543e-6f77-4cef-9aec-82e9b0230975', url: 'https://github.com/vikashmuktha/maven-web-application-jayadeep.git'
 		    }
 		catch(Exception e1)
                     {
