@@ -24,9 +24,19 @@ stages{
 
   stage('CheckOutCode'){
     steps{
-    git branch: 'master', credentialsId: '957b543e-6f77-4cef-9aec-82e9b0230975', url: 'https://github.com/vikashmuktha/maven-web-application-jayadeep.git'
-	
-	}
+    	script
+                {
+                    try
+                    {	    
+    			git branch: 'master', credentialsId: '957b543e-6f77-4cef-9aec-82e9b0230975', url: 'https://github.com/vikashmuktha/maven-web-application-jayadeep.git'
+		    }
+		catch(Exception e1)
+                    {
+                       mail bcc: '', body: 'jenkins is unable to download the code', cc: 'mukthavikash@gmail.com', from: '', replyTo: '', subject: 'download failed', to: 'mukthavikash@gmail.com'
+                        exit(1)
+                    }
+                }
+    	}
   }
   
   stage('Build'){
