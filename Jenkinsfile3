@@ -21,8 +21,8 @@ pipeline {
             steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
                     sh """
-                        ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
-                        ssh ec2-user@172.31.49.183 "
+                        sh 'ssh ec2-user@172.31.49.183 "ls -la ${FILE}"'
+                        sh 'ssh ec2-user@172.31.49.183 "
                             source=/opt/maven-9/webapps/
                             target=/opt/
                             cd \${target}
@@ -34,6 +34,7 @@ pipeline {
                             cp -R maven-web-application \${target}\${foldername}/bkp
                             cp -R maven-web-application.war \${target}\${foldername}/bkp
                             rm -rf cd /opt/maven-9/webapps/maven-web-application.war
+                            '
                         "
                         ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
                         ssh ec2-user@172.31.49.183 "
