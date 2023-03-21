@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        
+        /*
         stage('File Check') {
             steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
@@ -53,7 +53,7 @@ pipeline {
                 }
             }
         }
-        /*
+        */
         stage('Deploy to Container') {
             steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
@@ -61,7 +61,7 @@ pipeline {
                 }    
             }
         }
-        */
+        
     }
 }
 
