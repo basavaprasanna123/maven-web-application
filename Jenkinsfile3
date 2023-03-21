@@ -36,7 +36,7 @@ pipeline {
                             rm -rf cd /opt/maven-9/webapps/maven-web-application.war
                             '
                         "
-                        ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
+                        ssh ec2-user@172.31.49.183 "ls -la /opt/maven-9/webapps"
                         ssh ec2-user@172.31.49.183 "
                             cd /opt/maven-9/webapps;
                             if [ -f \${FILE} ];
