@@ -32,7 +32,7 @@ stages{
 		    }
 		catch(Exception e1)
                     {
-                       mail bcc: '', body: 'jenkins is unable to download the code', cc: 'mukthavikash@gmail.com', from: '', replyTo: '', subject: 'download failed', to: 'mukthavikash@gmail.com'
+                       mail bcc: '', body: 'jenkins is unable to download the code', cc: 'mukthavikash@gmail.com', from: '', replyTo: '', subject: 'download failed', to: 'vikashprepararion@gmail.com'
                         exit(1)
                     }
                 }
