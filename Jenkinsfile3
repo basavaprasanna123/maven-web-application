@@ -35,10 +35,10 @@ pipeline {
                             cp -R maven-web-application \${target}\${foldername}/bkp
                             cp -R maven-web-application.war \${target}\${foldername}/bkp
                             rm -rf cd /opt/maven-9/webapps/maven-web-application.war
+                            "
                             '
-                        "
-                        ssh ec2-user@172.31.49.183 "ls -la /opt/maven-9/webapps"
-                        ssh ec2-user@172.31.49.183 "
+                        sh 'ssh ec2-user@172.31.49.183 "ls -la /opt/maven-9/webapps"'
+                        sh 'ssh ec2-user@172.31.49.183 "
                             cd /opt/maven-9/webapps;
                             if [ -f \${FILE} ];
                             then
@@ -48,6 +48,7 @@ pipeline {
                                 echo \${FILE} does not exist
                             fi
                         "
+                        '
                     """
                 }
             }
