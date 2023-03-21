@@ -23,7 +23,7 @@ pipeline {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
                     sh 'ssh ec2-user@172.31.49.183  "ls -la /opt/maven-9/webapps/maven-web-application.war"'
                     sh 'ssh ec2-user@172.31.49.183  "rm -rf /opt/maven-9/webapps/maven-web-application.war"'
-                    sh 'ssh ec2-user@172.31.49.183  "ls -la /opt/maven-9/webapps/maven-web-application.war"'
+                    sh 'ssh ec2-user@172.31.49.183  "ls -la /opt/maven-9/webapps/"'
                     sh """ 
                     ssh ec2-user@172.31.49.183  "cd /opt/maven-9/webapps;  
                       if [ -f "$FILE" ];
