@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('git') {
             steps {
-               git 'https://github.com/Rameshsydam143/maven-web-application-jayadeep.git'
+               git 'https://github.com/vikashmuktha/maven-web-application-jayadeep.git'
             }
         }
         stage('Maven') {
