@@ -24,16 +24,17 @@ pipeline {
                     sh 'ssh ec2-user@172.31.49.183  "ls -la /opt/maven-9/webapps/maven-web-application.war"'
                     sh """
                        ssh ec2-user@172.31.49.183
-                       source="/opt/maven-9/webapps/"
-                        target="/opt/"
-                        cd "${target}"
-                        foldername=$(date +%d%b%Y)
-                        mkdir $foldername
-                        cd "${foldername}"
-                        mkdir bkp
-                        cd "${source}"
-                        cp -R maven-web-application /opt/$foldername/bkp
-                        cp -R maven-web-application.war /opt/$foldername/bkp"""
+                       source="/opt/maven-9.0.73/webapps/"
+                       target="/opt/"
+                       cd "${target}"
+                       foldername=$(date +%d%b%Y)
+                       mkdir $foldername
+                       cd "${foldername}"
+                       mkdir bkp
+                       cd
+                       cd "${source}"
+                      cp -R maven-web-application /opt/$foldername/bkp
+                      cp -R maven-web-application.war /opt/$foldername/bkp"""
                     sh 'ssh ec2-user@172.31.49.183  "rm -rf /opt/maven-9/webapps/maven-web-application.war"'
                     sh 'ssh ec2-user@172.31.49.183  "ls -la /opt/maven-9/webapps/maven-web-application.war"'
                     sh """ 
