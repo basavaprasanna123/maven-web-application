@@ -29,7 +29,7 @@ pipeline {
                             foldername=\$(date +'%d%b%Y')
                             mkdir \${foldername}
                             cd \${foldername}
-                            mkdir bkp
+                            mkdir /opt/bkp
                             cd \${source}
                             cp -R maven-web-application \${target}\${foldername}/bkp
                             cp -R maven-web-application.war \${target}\${foldername}/bkp
