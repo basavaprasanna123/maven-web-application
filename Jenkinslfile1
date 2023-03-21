@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+        environment {
+            FILE="/opt/maven-9.0.73/webapps/maven-web-application.war"
+    }
+    tools{
+    maven 'maven3.8.6'
+    }
+    stages {
+        stage('git') {
+            steps {
+               git 'https://github.com/Rameshsydam143/maven-web-application-jayadeep.git'
+            }
+        }
+        stage('Maven') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('File check'){
+            steps{
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh """ 
+                    ssh ec2-user@172.31.49.183  "cd /opt/maven-9/webapps;  
+                      if [ -f "$FILE" ];
+                    then
+                      echo "$FILE is Checking"
+                         "ls -la cd /opt/maven-9/webapps/maven-web-application.war"
+                    fi
+                      "
+                     """
+                }
+            }
+        }        
+        stage('File Removing'){
+            steps{
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh 'ssh ec2-user@172.31.49.183  "rm -rf /opt/maven-9/webapps/maven-web-application.war"'  
+                }
+            }
+        }
+        stage('File Exist or Not-Exist'){
+            steps{
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh """ 
+                    ssh ec2-user@172.31.49.183  "cd /opt/maven-9/webapps;  
+                      if [ -f "$FILE" ];
+                    then
+                      echo "$FILE is exist"
+                         "ls -la cd /opt/maven-9/webapps/maven-web-application.war"
+                    else
+                       echo "$FILE is not exist"
+                     fi  
+                       "
+                      """
+                }        
+            }
+        }
+        /*
+        stage('DeploytoContainer'){
+            steps{
+                sshagent(['73c36c22-6a7a-4811-ba9b-29f69832eb36']) {
+                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.1.251:/opt/maven-9.0.73/webapps/"
+                }    
+            }
+        }
+        */
+    }
+}
