@@ -81,7 +81,25 @@ post{
           body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
           replyTo: 'devopstrainingblr@gmail.com'
  */
-stage('file check'){
+/*stage('File check'){
+            steps{
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh """ 
+                    ssh ec2-user@172.31.49.183  "cd /opt/maven-9/webapps;  
+                      if [ -f "$FILE" ];
+                    then
+                      echo "$FILE is Checking"
+                      	 "ls -la cd /opt/maven-9/webapps/maven-web-application.war"
+stage('File Removing'){
+            steps{
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh """ 
+                    ssh ec2-user@172.31.49.183  "cd /opt/maven-9/webapps;  
+                      if [ -f "$FILE" ];
+                    then
+                      echo "$FILE is Checking"
+                      	 "rm -rf cd /opt/maven-9/webapps/maven-web-application.war"			 
+stage('File Exist or Not-Exist'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
                     sh """ 
@@ -89,7 +107,7 @@ stage('file check'){
                       if [ -f "$FILE" ];
                     then
                       echo "$FILE is exist"
-                      	 "rm -rf cd /opt/maven-9/webapps/maven-web-application.war"
+                      	 "ls -la cd /opt/maven-9/webapps/maven-web-application.war"
                     else
                        echo "$FILE is not exist"
                      fi  
@@ -98,6 +116,7 @@ stage('file check'){
                  }        
             }
         }	
+*/	
 /*stage('DeploytoContainer'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
