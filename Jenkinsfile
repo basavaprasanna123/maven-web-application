@@ -1,6 +1,9 @@
 pipeline{
 
 agent any
+	environment {
+            FILE="/opt/maven-9/webapps/maven-web-application.war"
+    }
 
 tools{
 maven 'maven-3.8.6'
