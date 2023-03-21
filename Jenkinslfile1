@@ -4,7 +4,7 @@ pipeline {
             FILE="/opt/maven-9.0.73/webapps/maven-web-application.war"
     }
     tools{
-    maven 'maven3.8.6'
+    maven 'maven-3.8.6'
     }
     stages {
         stage('git') {
