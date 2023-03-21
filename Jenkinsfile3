@@ -21,7 +21,7 @@ pipeline {
         stage('File Check') {
             steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
-                    sh """
+                    
                         sh 'ssh ec2-user@172.31.49.183 "ls -la /opt/maven-9/webapps/maven-web-application.war"'
                         sh 'ssh ec2-user@172.31.49.183 "
                             source=/opt/maven-9/webapps/
@@ -49,7 +49,7 @@ pipeline {
                             fi
                         "
                         '
-                    """
+                    
                 }
             }
         }
