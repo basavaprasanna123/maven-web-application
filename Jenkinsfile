@@ -92,7 +92,10 @@ stage('File check'){
                       	 "ls -la cd /opt/maven-9/webapps/maven-web-application.war"
 		    fi
 		    	"
-		      """	
+		      """
+		}
+	    }
+}	
 stage('File Removing'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
@@ -104,7 +107,10 @@ stage('File Removing'){
                       	 "rm -rf cd /opt/maven-9/webapps/maven-web-application.war"
 		    fi
 		      "
-		     """ 
+		     """
+		}
+	    }
+}
 stage('File Exist or Not-Exist'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
