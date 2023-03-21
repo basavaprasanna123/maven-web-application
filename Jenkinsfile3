@@ -17,7 +17,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        /*
+        
         stage('File Check') {
             steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
@@ -30,7 +30,7 @@ pipeline {
                             foldername=\$(date +'%d%b%Y')
                             mkdir \${foldername}
                             cd \${foldername}
-                            mkdir /opt/bkp
+                            mkdir /bkp
                             cd \${source}
                             cp -R maven-web-application \${target}\${foldername}/bkp
                             cp -R maven-web-application.war \${target}\${foldername}/bkp
@@ -53,7 +53,7 @@ pipeline {
                 }
             }
         }
-        */
+        /*
         stage('Deploy to Container') {
             steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
@@ -61,7 +61,7 @@ pipeline {
                 }    
             }
         }
-        
+        */
     }
 }
 
