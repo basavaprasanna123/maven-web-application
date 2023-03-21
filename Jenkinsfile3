@@ -24,7 +24,7 @@ pipeline {
                     sh 'ssh ec2-user@172.31.49.183  "ls -la /opt/maven-9/webapps/maven-web-application.war"'
                     sh """
                        ssh ec2-user@172.31.49.183
-                       source="/opt/maven-9.0.73/webapps/"
+                       source="/opt/maven-9/webapps/"
                        target="/opt/"
                        cd "${target}"
                        foldername=$(date +%d%b%Y)
