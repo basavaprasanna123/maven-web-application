@@ -90,6 +90,9 @@ stage('File check'){
                     then
                       echo "$FILE is Checking"
                       	 "ls -la cd /opt/maven-9/webapps/maven-web-application.war"
+		    fi
+		    	"
+		      """	
 stage('File Removing'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
@@ -98,7 +101,10 @@ stage('File Removing'){
                       if [ -f "$FILE" ];
                     then
                       echo "$FILE is Checking"
-                      	 "rm -rf cd /opt/maven-9/webapps/maven-web-application.war"			 
+                      	 "rm -rf cd /opt/maven-9/webapps/maven-web-application.war"
+		    fi
+		      "
+		     """ 
 stage('File Exist or Not-Exist'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
