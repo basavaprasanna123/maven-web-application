@@ -52,8 +52,8 @@ pipeline {
         */
         stage('DeploytoContainer'){
             steps{
-                sshagent(['73c36c22-6a7a-4811-ba9b-29f69832eb36']) {
-                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.1.251:/opt/maven-9.0.73/webapps/"
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.49.183:/opt/maven-9/webapps/"
                 }    
             }
         }
