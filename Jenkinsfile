@@ -10,10 +10,10 @@ maven 'maven-3.8.6'
 
 }
 
-triggers{
+/*triggers{
 pollSCM('* * * * *')
 }
-
+*/
 /*options{
 timestamps()
 buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5'))
