@@ -81,7 +81,7 @@ post{
           body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
           replyTo: 'devopstrainingblr@gmail.com'
  */
-/*stage('File check'){
+stage('File check'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
                     sh """ 
@@ -116,7 +116,7 @@ stage('File Exist or Not-Exist'){
                  }        
             }
         }	
-*/	
+	
 /*stage('DeploytoContainer'){
             steps{
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
