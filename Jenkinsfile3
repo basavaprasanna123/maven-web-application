@@ -1,15 +1,15 @@
 pipeline {
     agent any
-        environment {
-            FILE="/opt/maven-9/webapps/maven-web-application.war"
+    environment {
+        FILE="/opt/maven-9/webapps/maven-web-application.war"
     }
-    tools{
-    maven 'maven-3.8.6'
+    tools {
+        maven 'maven-3.8.3'
     }
     stages {
-        stage('git') {
+        stage('Git') {
             steps {
-               git 'https://github.com/vikashmuktha/maven-web-application-jayadeep.git'
+                git 'https://github.com/vikashmuktha/maven-web-application-jayadeep.git'
             }
         }
         stage('Maven') {
@@ -17,45 +17,42 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        
-        stage('File check'){
-            steps{
+        stage('File Check') {
+            steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
-                    sh 'ssh ec2-user@172.31.49.183  "ls -la /opt/maven-9/webapps/maven-web-application.war"'
-                    sh '''
-                            ssh ec2-user@172.31.49.183 "
+                    sh """
+                        ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
+                        ssh ec2-user@172.31.49.183 "
                             source=/opt/maven-9/webapps/
                             target=/opt/
-                            cd ${target}
-                            foldername=$(date +%d%b%Y)
-                            mkdir $foldername
-                            cd ${foldername}
+                            cd \${target}
+                            foldername=\$(date +'%d%b%Y')
+                            mkdir \${foldername}
+                            cd \${foldername}
                             mkdir bkp
-                            cd ${source}
-                            cp -R maven-web-application /opt/$foldername/bkp
-                            cp -R maven-web-application.war /opt/$foldername/bkp
+                            cd \${source}
+                            cp -R maven-web-application \${target}\${foldername}/bkp
+                            cp -R maven-web-application.war \${target}\${foldername}/bkp
                             rm -rf maven-web-application.war
-                        '''
-                        ssh ec2-user@172.31.49.183 "ls -la /opt/maven-9/webapps/maven-web-application.war"
+                        "
+                        ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
                         ssh ec2-user@172.31.49.183 "
                             cd /opt/maven-9/webapps;
-                            if [ -f ${FILE} ];
+                            if [ -f \${FILE} ];
                             then
-                                echo ${FILE} is exist
-                                ls -la cd /opt/maven-9/webapps/maven-web-application.war
+                                echo \${FILE} exists
+                                ls -la \${FILE}
                             else
-                                echo ${FILE} is not exist
+                                echo \${FILE} does not exist
                             fi
                         "
-                    '''
-                
+                    """
                 }
             }
-        }        
-        
+        }
         /*
-        stage('DeploytoContainer'){
-            steps{
+        stage('Deploy to Container') {
+            steps {
                 sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
                     sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.49.183:/opt/maven-9/webapps/"
                 }    
@@ -64,3 +61,4 @@ pipeline {
         */
     }
 }
+
