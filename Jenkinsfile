@@ -79,7 +79,7 @@ stage('file check'){
                       if [ -f "$FILE" ];
                     then
                       echo "$FILE is exist"
-                      rm -f "cd /opt/maven-9/webapps/maven-web-application.war"
+                      	 "cd /opt/maven-9/webapps/maven-web-application.war"
                     else
                        echo "$FILE is not exist"
                      fi  
