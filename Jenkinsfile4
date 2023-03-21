@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    environment {
+        FILE="/opt/maven-9/webapps/maven-web-application.war"
+    }
+    tools {
+        maven 'maven-3.8.6'
+    }
+    stages {
+        stage('Git') {
+            steps {
+                git 'https://github.com/vikashmuktha/maven-web-application-jayadeep.git'
+            }
+        }
+        stage('Maven') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('File Check') {
+            steps {
+                sshagent(['599ff7ef-ccdd-4438-bfdc-7a604ef587c1']) {
+                    sh """
+                        ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
+                        ssh ec2-user@172.31.49.183 "
+                            source=/opt/maven-9/webapps/
+                            target=/opt/
+                            cd \${target}
+                            foldername=\$(date +'%d%b%Y')
+                            mkdir \${foldername}
+                            cd \${foldername}
+                            mkdir bkp
+                            cd \${source}
+                            cp -R maven-web-application* \${target}\${foldername}/bkp/
+                            rm -f maven-web-application.war
+                        "
+                        ssh ec2-user@172.31.49.183 "ls -la ${FILE}"
+                        ssh ec2-user@172.31.49.183 "
+                            cd /opt/maven-9/webapps;
+                            if [ -f \${FILE} ];
+                            then
+                                echo \${FILE} exists
+                                ls -la \${FILE}
+                            else
+                                 echo ${FILE} does not exist
+                            fi
+                        """
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    scp -o StrictHostKeyChecking=no target/maven-web-application.war ${FILE}
+                    }
+                }    
+            }
+        }
+    }
+}
